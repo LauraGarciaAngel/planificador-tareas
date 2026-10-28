@@ -1,1 +1,1 @@
-# planificador-tareas
+# Proyecto personal planificador de tareas
