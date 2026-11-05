@@ -1,8 +1,4 @@
 /* Ajustes visuales básicos */
-body {
-  background-color: #f8f9fa;
-}
-
 .card {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
@@ -12,3 +8,410 @@ body {
   border-color: #dc3545;
 }
 
+
+/* =====================================================
+   LAZU - SISTEMA DE DISEÑO "NEO GLASS DARK"
+   ===================================================== */
+
+/* ---------- 0. Variables base (tokens de diseño) ---------- */
+:root {
+  /* Colores */
+  --bg-void-black: #0B0A12;
+  --surface-deep-violet: #171426;
+  --surface-glass: rgba(23, 20, 38, 0.78);
+  --accent-electric-violet: #8B5CF6;
+  --accent-mint-green: #67E8B4;
+  --text-cloud-white: #E8E7F0;
+  --text-muted-lavender: #9B97AC;
+  --border-subtle: rgba(232, 231, 240, 0.08);
+
+  /* Tipografía */
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Estilos globales: fondo oscuro y texto claro */
+body {
+  background-color: var(--bg-void-black);
+  color: var(--text-cloud-white);
+  font-family: var(--font-sans);
+}
+
+/* Color de selección de texto */
+::selection {
+  background-color: var(--accent-electric-violet);
+  color: var(--text-cloud-white);
+}
+
+/* Clase de ayuda: usa la fuente monoespaciada (fechas, contadores, métricas) */
+.lazu-mono {
+  font-family: var(--font-mono);
+}
+
+/* ---------- 1. NAVBAR ---------- */
+.lazu-navbar {
+  background-color: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Logotipo */
+.lazu-logo {
+  color: var(--text-cloud-white);
+  font-weight: 700;
+  text-decoration: none;
+}
+.lazu-logo:hover {
+  color: var(--text-cloud-white);
+}
+
+/* Punto de enfoque verde */
+.lazu-logo-dot {
+  color: var(--accent-mint-green);
+}
+
+/* Enlaces de navegación */
+.lazu-nav-link {
+  color: var(--text-muted-lavender);
+  font-size: 0.9rem;
+  border: 1px solid transparent; /* borde invisible para que no "salte" al activarse */
+  border-radius: 10px;
+  padding: 0.4rem 0.8rem;
+  text-decoration: none;
+}
+.lazu-nav-link:hover {
+  color: var(--text-cloud-white);
+}
+
+/* Enlace activo: fondo violeta translúcido y borde violeta */
+.lazu-nav-link.active {
+  color: var(--text-cloud-white);
+  background-color: rgba(139, 92, 246, 0.18);
+  border-color: var(--accent-electric-violet);
+}
+
+/* Contador junto a "Mis tareas" */
+.lazu-nav-counter {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-mint-green);
+  margin-left: 0.25rem;
+}
+
+/* Fecha de la derecha */
+.lazu-nav-date {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted-lavender);
+}
+
+/* Botón hamburguesa (visible en móvil/tablet) */
+.lazu-navbar .navbar-toggler {
+  border-color: var(--border-subtle);
+}
+.lazu-navbar .navbar-toggler:focus {
+  box-shadow: 0 0 0 2px var(--accent-electric-violet);
+}
+.lazu-navbar .navbar-toggler-icon {
+  filter: invert(1); /* convierte el icono oscuro en claro */
+}
+
+/* ---------- 2. FOOTER ---------- */
+.lazu-footer {
+  background-color: var(--surface-deep-violet);
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-muted-lavender);
+  font-size: 0.875rem;
+}
+
+.lazu-footer-title {
+  color: var(--text-cloud-white);
+  font-weight: 700;
+}
+
+.lazu-footer-link {
+  color: var(--text-muted-lavender);
+  text-decoration: none;
+}
+.lazu-footer-link:hover {
+  color: var(--accent-electric-violet);
+}
+
+/* Nota de versión del Sprint */
+.lazu-footer-version {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+/* ---------- 3. BUTTONS ---------- */
+
+/* Base compartida: úsala junto con una variante (mint, secondary o danger) */
+.lazu-btn-mint,
+.lazu-btn-secondary,
+.lazu-btn-danger {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  border-radius: 10px;
+  padding: 0.45rem 1rem;
+  border: 1px solid transparent;
+  transition: opacity 0.15s, border-color 0.15s;
+}
+
+/* Anillo de foco violeta (accesibilidad con teclado) */
+.lazu-btn-mint:focus-visible,
+.lazu-btn-secondary:focus-visible,
+.lazu-btn-danger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.5);
+}
+
+/* Botón deshabilitado */
+.lazu-btn-mint:disabled,
+.lazu-btn-secondary:disabled,
+.lazu-btn-danger:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Primario: acciones principales */
+.lazu-btn-mint {
+  background-color: var(--accent-mint-green);
+  color: var(--bg-void-black);
+  font-weight: 700;
+}
+.lazu-btn-mint:hover,
+.lazu-btn-mint:active {
+  background-color: var(--accent-mint-green);
+  color: var(--bg-void-black);
+  opacity: 0.88;
+}
+
+/* Secundario: Cancelar, Restablecer, Ver agenda */
+.lazu-btn-secondary {
+  background-color: var(--surface-deep-violet);
+  color: var(--text-cloud-white);
+  border-color: var(--border-subtle);
+  font-weight: 500;
+}
+.lazu-btn-secondary:hover,
+.lazu-btn-secondary:active {
+  background-color: var(--surface-deep-violet);
+  color: var(--text-cloud-white);
+  border-color: var(--accent-electric-violet);
+}
+
+/* Peligro: acciones destructivas como Eliminar (rojo suave, sin brillos) */
+.lazu-btn-danger {
+  background-color: rgba(248, 113, 113, 0.08);
+  color: #F87171;
+  border-color: rgba(248, 113, 113, 0.35);
+  font-weight: 500;
+}
+.lazu-btn-danger:hover,
+.lazu-btn-danger:active {
+  background-color: rgba(248, 113, 113, 0.16);
+  color: #FCA5A5;
+  border-color: rgba(248, 113, 113, 0.6);
+}
+
+/* Tamaño pequeño opcional (para botones dentro de tarjetas) */
+.lazu-btn-sm {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.7rem;
+}
+
+/* ---------- 4. BADGES ---------- */
+
+/* Base compartida de las píldoras */
+.lazu-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+/* StatusBadge: Pendiente (violeta translúcido) */
+.lazu-badge-pending {
+  background-color: rgba(139, 92, 246, 0.16);
+  color: #C4B5FD;
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* StatusBadge: En progreso (ámbar suave) */
+.lazu-badge-progress {
+  background-color: rgba(251, 191, 36, 0.12);
+  color: #FCD34D;
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+/* StatusBadge: Completada (mint translúcido) */
+.lazu-badge-done {
+  background-color: rgba(103, 232, 180, 0.12);
+  color: var(--accent-mint-green);
+  border-color: rgba(103, 232, 180, 0.35);
+}
+
+/* CategoryChip: etiqueta compacta neutra con un puntito de color */
+.lazu-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--text-muted-lavender);
+  background-color: var(--surface-deep-violet);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.25rem 0.55rem;
+  white-space: nowrap;
+}
+
+/* Puntito de color de la categoría */
+.lazu-chip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--text-muted-lavender);
+}
+.lazu-chip-work::before     { background-color: #60A5FA; }
+.lazu-chip-personal::before { background-color: var(--accent-electric-violet); }
+.lazu-chip-learning::before { background-color: #FCD34D; }
+.lazu-chip-health::before   { background-color: var(--accent-mint-green); }
+
+/* ---------- 5. CARDS ---------- */
+
+/* Contenedor base: GlassCard */
+.lazu-glass-card {
+  background-color: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 1.25rem;
+  height: 100%;
+  transition: border-color 0.15s;
+}
+.lazu-glass-card:hover {
+  border-color: rgba(139, 92, 246, 0.35);
+}
+
+/* TaskItem: título, descripción y datos */
+.lazu-task-title {
+  color: var(--text-cloud-white);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+}
+.lazu-task-description {
+  color: var(--text-muted-lavender);
+  font-size: 0.9rem;
+  margin: 0.5rem 0 0.9rem;
+}
+.lazu-task-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted-lavender);
+}
+/* Línea que separa los botones de acción */
+.lazu-task-actions {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.9rem;
+  margin-top: 0.9rem;
+}
+
+/* StatisticsCard: etiqueta, número grande y subtítulo */
+.lazu-stat-label {
+  color: var(--text-muted-lavender);
+  font-size: 0.8rem;
+  margin: 0 0 0.25rem;
+}
+.lazu-stat-value {
+  font-family: var(--font-mono);
+  color: var(--text-cloud-white);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+}
+.lazu-stat-subtitle {
+  color: var(--text-muted-lavender);
+  font-size: 0.8rem;
+  margin: 0.25rem 0 0;
+}
+
+/* ---------- 6. FORMS Y ALERTAS ---------- */
+
+/* Etiquetas de los campos */
+.lazu-label {
+  color: var(--text-muted-lavender);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+/* Campos oscuros: se aplican sobre .form-control y .form-select de Bootstrap */
+.lazu-input {
+  background-color: var(--bg-void-black);
+  color: var(--text-cloud-white);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  font-family: var(--font-sans);
+  padding: 0.6rem 0.8rem;
+}
+.lazu-input::placeholder {
+  color: var(--text-muted-lavender);
+  opacity: 0.8;
+}
+/* Anillo violeta al enfocar el campo */
+.lazu-input:focus {
+  background-color: var(--bg-void-black);
+  color: var(--text-cloud-white);
+  border-color: var(--accent-electric-violet);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
+}
+
+/* El select usa una flecha clara (la de Bootstrap es oscura) */
+.lazu-input.form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%239B97AC' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+/* Campo de fecha: fuente mono y calendario en modo oscuro */
+.lazu-input-date {
+  font-family: var(--font-mono);
+  color-scheme: dark;
+}
+
+/* Campo con error: borde rojizo suave */
+.lazu-input-error,
+.lazu-input-error:focus {
+  border-color: rgba(248, 113, 113, 0.7);
+}
+
+/* ValidationAlert: base oscura */
+.lazu-alert {
+  background-color: var(--surface-deep-violet);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  color: var(--text-cloud-white);
+  font-size: 0.9rem;
+  padding: 0.75rem 1rem;
+}
+/* Variante de error */
+.lazu-alert-error {
+  background-color: rgba(248, 113, 113, 0.08);
+  border-color: rgba(248, 113, 113, 0.35);
+  color: #FCA5A5;
+}
+/* Variante de éxito */
+.lazu-alert-success {
+  background-color: rgba(103, 232, 180, 0.08);
+  border-color: rgba(103, 232, 180, 0.35);
+  color: var(--accent-mint-green);
+}

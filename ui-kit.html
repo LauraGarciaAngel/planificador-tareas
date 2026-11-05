@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lazu - UI Kit</title>
+
+  <!-- Fuentes: Inter y JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Estilos de Lazu -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Estilos solo para organizar este catálogo -->
+  <style>
+    .kit-section { margin-bottom: 3rem; }
+    .kit-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .kit-description { color: var(--text-muted-lavender); font-size: 0.9rem; margin-bottom: 1rem; }
+    .kit-subtitle { color: var(--text-muted-lavender); font-size: 0.8rem; margin: 1rem 0 0.5rem; }
+    .kit-swatch { height: 48px; border-radius: 10px; border: 1px solid var(--border-subtle); }
+  </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- COMPONENTE 1: Navbar -->
+  <div id="navbarContainer"></div>
+
+  <main class="container py-5 flex-grow-1">
+
+    <h1 class="h3 mb-1">UI Kit de Lazu</h1>
+    <p class="kit-description mb-5">Neo Glass Dark · Organiza tu tiempo. Encuentra tu enfoque.</p>
+
+    <!-- Paleta -->
+    <section class="kit-section">
+      <h2 class="kit-title">Paleta y tipografía</h2>
+      <p class="kit-description">Variables definidas en <code>:root</code> de <code>css/styles.css</code>.</p>
+      <div id="paletteRow" class="row g-3 mb-3"></div>
+      <p class="mb-1">Inter: Título, navegación, botones y formularios.</p>
+      <p class="lazu-mono mb-0">JetBrains Mono: 2026-11-10 · 25 min · 63%</p>
+    </section>
+
+    <!-- COMPONENTE 3: Buttons -->
+    <section class="kit-section">
+      <h2 class="kit-title">3. Buttons</h2>
+      <p class="kit-description"><code>createButton(texto, variante, opciones)</code></p>
+      <div id="normalButtons" class="d-flex flex-wrap gap-2"></div>
+      <p class="kit-subtitle">Deshabilitados</p>
+      <div id="disabledButtons" class="d-flex flex-wrap gap-2"></div>
+      <p class="kit-subtitle">Tamaño pequeño</p>
+      <div id="smallButtons" class="d-flex flex-wrap gap-2"></div>
+    </section>
+
+    <!-- COMPONENTE 4: Badges -->
+    <section class="kit-section">
+      <h2 class="kit-title">4. Badges</h2>
+      <p class="kit-description"><code>createStatusBadge(estado)</code> y <code>createCategoryChip(categoria)</code></p>
+      <p class="kit-subtitle mt-0">StatusBadge</p>
+      <div id="statusBadges" class="d-flex flex-wrap gap-2"></div>
+      <p class="kit-subtitle">CategoryChip</p>
+      <div id="categoryChips" class="d-flex flex-wrap gap-2"></div>
+    </section>
+
+    <!-- COMPONENTE 5: Cards -->
+    <section class="kit-section">
+      <h2 class="kit-title">5. Cards</h2>
+      <p class="kit-description"><code>createGlassCard</code>, <code>createTaskItem</code> y <code>createStatisticsCard</code></p>
+      <p class="kit-subtitle mt-0">StatisticsCard</p>
+      <div id="statsRow" class="row g-3"></div>
+      <p class="kit-subtitle">TaskItem</p>
+      <div id="tasksRow" class="row g-3"></div>
+      <p class="kit-subtitle">GlassCard (contenido libre)</p>
+      <div id="customCard"></div>
+    </section>
+
+    <!-- COMPONENTE 6: Forms y Alertas -->
+    <section class="kit-section">
+      <h2 class="kit-title">6. TaskForm + ValidationAlert</h2>
+      <p class="kit-description">Envía el formulario vacío para ver la alerta de error.</p>
+      <div class="row">
+        <div class="col-12 col-lg-8">
+          <div id="formCard"></div>
+        </div>
+      </div>
+      <p class="kit-subtitle">Variantes de la alerta</p>
+      <div class="alert lazu-alert lazu-alert-error mb-2" role="alert">Error: El nombre de la tarea es obligatorio.</div>
+      <div class="alert lazu-alert lazu-alert-success" role="alert">Éxito: ¡Tarea validada correctamente!</div>
+    </section>
+
+  </main>
+
+  <!-- COMPONENTE 2: Footer -->
+  <div id="footerContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Componentes (buttons.js primero: los demás lo usan) -->
+  <script src="components/buttons.js"></script>
+  <script src="components/badges.js"></script>
+  <script src="components/cards.js"></script>
+  <script src="components/forms.js"></script>
+  <script src="components/navbar.js"></script>
+  <script src="components/footer.js"></script>
+
+  <script>
+    // 1 y 2. Navbar y Footer
+    renderNavbar("navbarContainer", "Resumen", 3);
+    renderFooter("footerContainer", "Sprint 1 · v0.1.0");
+
+    // Paleta: lista de colores para mostrar
+    var colors = [
+      { name: "Void Black", variable: "--bg-void-black" },
+      { name: "Deep Violet", variable: "--surface-deep-violet" },
+      { name: "Electric Violet", variable: "--accent-electric-violet" },
+      { name: "Mint Green", variable: "--accent-mint-green" },
+      { name: "Cloud White", variable: "--text-cloud-white" },
+      { name: "Muted Lavender", variable: "--text-muted-lavender" }
+    ];
+    var paletteHtml = "";
+    for (var c = 0; c < colors.length; c++) {
+      paletteHtml +=
+        '<div class="col-6 col-md-4 col-lg-2">' +
+          '<div class="kit-swatch" style="background-color: var(' + colors[c].variable + ');"></div>' +
+          '<p class="mb-0 mt-1" style="font-size: 0.8rem;">' + colors[c].name + "</p>" +
+          '<p class="lazu-mono mb-0" style="font-size: 0.7rem; color: var(--text-muted-lavender);">' + colors[c].variable + "</p>" +
+        "</div>";
+    }
+    document.querySelector("#paletteRow").innerHTML = paletteHtml;
+
+    // 3. Buttons
+    document.querySelector("#normalButtons").innerHTML =
+      createButton("+ Nueva tarea", "mint") +
+      createButton("Guardar cambios", "mint") +
+      createButton("Iniciar foco", "mint") +
+      createButton("Cancelar", "secondary") +
+      createButton("Restablecer", "secondary") +
+      createButton("Ver agenda", "secondary") +
+      createButton("Eliminar", "danger");
+    document.querySelector("#disabledButtons").innerHTML =
+      createButton("Guardar", "mint", { disabled: true }) +
+      createButton("Cancelar", "secondary", { disabled: true }) +
+      createButton("Eliminar", "danger", { disabled: true });
+    document.querySelector("#smallButtons").innerHTML =
+      createButton("Editar", "secondary", { small: true }) +
+      createButton("Eliminar", "danger", { small: true });
+
+    // 4. Badges
+    document.querySelector("#statusBadges").innerHTML =
+      createStatusBadge("pending") + createStatusBadge("progress") + createStatusBadge("done");
+    document.querySelector("#categoryChips").innerHTML =
+      createCategoryChip("work") + createCategoryChip("personal") +
+      createCategoryChip("learning") + createCategoryChip("health");
+
+    // 5. Cards
+    document.querySelector("#statsRow").innerHTML =
+      '<div class="col-12 col-sm-6 col-lg-4">' + createStatisticsCard("Tareas pendientes", "02", "para hoy") + "</div>" +
+      '<div class="col-12 col-sm-6 col-lg-4">' + createStatisticsCard("Tiempo de enfoque", "75 min", "esta semana") + "</div>" +
+      '<div class="col-12 col-lg-4">' + createStatisticsCard("Progreso", "63%", "de tus tareas") + "</div>";
+
+    var tasks = [
+      { title: "Estudiar JavaScript", description: "Repasar funciones y manipulación del DOM.", category: "learning", date: "2026-11-10", duration: "50 min", status: "progress" },
+      { title: "Entregar informe", description: "Enviar el avance semanal al equipo.", category: "work", date: "2026-11-07", duration: "25 min", status: "pending" },
+      { title: "Caminata matutina", description: "30 minutos al aire libre.", category: "health", date: "2026-11-05", duration: "30 min", status: "done" }
+    ];
+    var tasksHtml = "";
+    for (var i = 0; i < tasks.length; i++) {
+      tasksHtml += '<div class="col-12 col-md-6 col-lg-4">' + createTaskItem(tasks[i]) + "</div>";
+    }
+    document.querySelector("#tasksRow").innerHTML = tasksHtml;
+
+    document.querySelector("#customCard").innerHTML = createGlassCard(
+      '<h3 class="h5">Próxima tarea</h3>' +
+      '<p style="color: var(--text-muted-lavender);">Estudiar JavaScript · <span class="lazu-mono">2026-11-10</span></p>' +
+      createButton("Iniciar foco", "mint")
+    );
+
+    // 6. TaskForm + ValidationAlert
+    document.querySelector("#formCard").innerHTML = createGlassCard(createTaskForm());
+    setupTaskFormValidation();
+  </script>
+</body>
+</html>
