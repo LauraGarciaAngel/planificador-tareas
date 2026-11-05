@@ -4,88 +4,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Planificador de Tareas</title>
-  <!-- Bootstrap 5 por CDN -->
+  <title>Lazu - Planificador de Tareas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Nuestros estilos -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-  <!-- Encabezado -->
-  <header class="bg-primary text-white text-center py-4 mb-4">
-    <h1>Planificador de Tareas</h1>
-    <p class="mb-0">Organiza tu día de forma simple</p>
-  </header>
+  <nav class="navbar lazu-navbar sticky-top">
+    <div class="container">
+      <a class="navbar-brand lazu-logo" href="#"><span class="lazu-logo-dot">❖</span> lazu</a>
+      <span class="lazu-nav-date">Planificador de tareas</span>
+    </div>
+  </nav>
 
-  <main class="container">
+  <main class="container py-5 flex-grow-1">
 
-    <!-- Sección del formulario -->
+
+    <header class="mb-5">
+      <h1 class="h3 mb-1">Planificador de Tareas</h1>
+      <p class="mb-0" style="color: var(--text-muted-lavender);">Organiza tu tiempo. Encuentra tu enfoque.</p>
+    </header>
+
     <section class="mb-5">
-      <h2 class="h4 mb-3">Nueva tarea</h2>
+      <h2 class="h5 mb-3">Nueva tarea</h2>
 
-      <!-- Alerta de error (oculta al inicio con d-none) -->
-      <div id="errorAlert" class="alert alert-danger d-none" role="alert"></div>
-      <!-- Alerta de éxito (oculta al inicio) -->
-      <div id="successAlert" class="alert alert-success d-none" role="alert"></div>
+      <div class="row">
+        <div class="col-12 col-lg-8">
+          <div class="lazu-glass-card">
 
-      <form id="newTaskForm" novalidate>
-        <div class="mb-3">
-          <label for="newTaskNameInput" class="form-label">Nombre de la tarea</label>
-          <input type="text" id="newTaskNameInput" class="form-control" placeholder="Ej: Estudiar JavaScript">
+            <!-- Alerta de error (oculta al inicio con d-none) -->
+            <div id="errorAlert" class="alert lazu-alert lazu-alert-error d-none" role="alert"></div>
+            <!-- Alerta de éxito (oculta al inicio) -->
+            <div id="successAlert" class="alert lazu-alert lazu-alert-success d-none" role="alert"></div>
+
+            <form id="newTaskForm" novalidate>
+              <div class="mb-3">
+                <label for="newTaskNameInput" class="form-label lazu-label">Nombre de la tarea</label>
+                <input type="text" id="newTaskNameInput" class="form-control lazu-input"
+                  placeholder="Ej: Estudiar JavaScript">
+              </div>
+
+              <div class="mb-3">
+                <label for="newTaskDescriptionInput" class="form-label lazu-label">Descripción</label>
+                <textarea id="newTaskDescriptionInput" class="form-control lazu-input" rows="3"
+                  placeholder="Describe brevemente la tarea"></textarea>
+              </div>
+
+              <div class="mb-4">
+                <label for="newTaskDateInput" class="form-label lazu-label">Fecha límite</label>
+                <input type="date" id="newTaskDateInput" class="form-control lazu-input lazu-input-date">
+              </div>
+
+              <div class="d-grid d-sm-flex">
+                <button type="submit" class="btn lazu-btn-mint">Agregar tarea</button>
+              </div>
+            </form>
+
+          </div>
         </div>
-
-        <div class="mb-3">
-          <label for="newTaskDescriptionInput" class="form-label">Descripción</label>
-          <textarea id="newTaskDescriptionInput" class="form-control" rows="3"
-            placeholder="Describe brevemente la tarea"></textarea>
-        </div>
-
-        <div class="mb-3">
-          <label for="newTaskDateInput" class="form-label">Fecha límite</label>
-          <input type="date" id="newTaskDateInput" class="form-control">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Agregar tarea</button>
-      </form>
+      </div>
     </section>
 
-    <!-- Sección de lista de tareas (tarjetas estáticas de ejemplo) -->
     <section class="mb-5">
-      <h2 class="h4 mb-3">Mis tareas</h2>
+      <h2 class="h5 mb-3">Mis tareas</h2>
       <div class="row g-3">
 
         <div class="col-12 col-md-6 col-lg-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Estudiar HTML</h5>
-              <p class="card-text">Repasar etiquetas semánticas y formularios.</p>
-              <span class="badge text-bg-warning">Pendiente</span>
+          <div class="lazu-glass-card">
+            <div class="d-flex justify-content-between align-items-start gap-2 mb-1">
+              <h3 class="lazu-task-title">Estudiar HTML</h3>
+              <span class="lazu-badge lazu-badge-pending">Pendiente</span>
             </div>
-            <div class="card-footer text-muted">Fecha límite: 2026-11-10</div>
+            <p class="lazu-task-description">Repasar etiquetas semánticas y formularios.</p>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+              <span class="lazu-chip lazu-chip-learning">Aprendizaje</span>
+              <span class="lazu-task-meta">2026-11-10</span>
+            </div>
           </div>
         </div>
 
         <div class="col-12 col-md-6 col-lg-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Practicar Bootstrap</h5>
-              <p class="card-text">Crear una página con tarjetas y alertas.</p>
-              <span class="badge text-bg-info">En progreso</span>
+          <div class="lazu-glass-card">
+            <div class="d-flex justify-content-between align-items-start gap-2 mb-1">
+              <h3 class="lazu-task-title">Practicar Bootstrap</h3>
+              <span class="lazu-badge lazu-badge-progress">En progreso</span>
             </div>
-            <div class="card-footer text-muted">Fecha límite: 2026-11-12</div>
+            <p class="lazu-task-description">Crear una página con tarjetas y alertas.</p>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+              <span class="lazu-chip lazu-chip-learning">Aprendizaje</span>
+              <span class="lazu-task-meta">2026-11-12</span>
+            </div>
           </div>
         </div>
 
         <div class="col-12 col-md-6 col-lg-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Subir proyecto a GitHub</h5>
-              <p class="card-text">Publicar el repositorio y activar GitHub Pages.</p>
-              <span class="badge text-bg-success">Completada</span>
+          <div class="lazu-glass-card">
+            <div class="d-flex justify-content-between align-items-start gap-2 mb-1">
+              <h3 class="lazu-task-title">Subir proyecto a GitHub</h3>
+              <span class="lazu-badge lazu-badge-done">Completada</span>
             </div>
-            <div class="card-footer text-muted">Fecha límite: 2026-11-05</div>
+            <p class="lazu-task-description">Publicar el repositorio y activar GitHub Pages.</p>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+              <span class="lazu-chip lazu-chip-work">Trabajo</span>
+              <span class="lazu-task-meta">2026-11-05</span>
+            </div>
           </div>
         </div>
 
@@ -93,11 +120,13 @@
     </section>
   </main>
 
-  <footer class="text-center text-muted py-3 border-top">
-
+  <footer class="lazu-footer py-4 mt-auto">
+    <div class="container text-center">
+      <p class="lazu-footer-title mb-1"><span class="lazu-logo-dot">❖</span> lazu</p>
+      <p class="lazu-footer-version mb-0">Sprint 1 · v0.1.0</p>
+    </div>
   </footer>
 
-  <!-- Script de Bootstrap y nuestro JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="app.js"></script>
 </body>
