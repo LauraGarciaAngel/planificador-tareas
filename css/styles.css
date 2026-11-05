@@ -1,0 +1,14 @@
+/* Ajustes visuales básicos */
+body {
+  background-color: #f8f9fa;
+}
+
+.card {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Borde rojo cuando un campo es inválido */
+.input-error {
+  border-color: #dc3545;
+}
+
